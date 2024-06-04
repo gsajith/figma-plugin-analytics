@@ -1,12 +1,14 @@
 "use client";
-import { useSearchParams } from "next/navigation";
 import Script from "next/script";
-import { Suspense, useEffect } from "react";
+import { useEffect } from "react";
 
-function SendEventPage() {
-  const searchParams = useSearchParams();
-  const eventName = searchParams.get("eventName");
-  const gtagID = searchParams.get("gtagID");
+export default function SendEventPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | undefined };
+}) {
+  const eventName = searchParams["eventName"];
+  const gtagID = searchParams["gtagID"];
 
   useEffect(() => {
     if (typeof window !== "undefined" && gtagID) {
@@ -27,10 +29,3 @@ function SendEventPage() {
     </div>
   );
 }
-
-const SuspenseWrapper = () => (
-  <Suspense>
-    <SendEventPage />
-  </Suspense>
-);
-export default SuspenseWrapper;
