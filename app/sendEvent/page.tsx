@@ -1,7 +1,7 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import Script from "next/script";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 
 export default function SendEventPage() {
   const searchParams = useSearchParams();
@@ -22,8 +22,10 @@ export default function SendEventPage() {
 
   return (
     <div>
-      <Script src="injectGtag.js" />
-      Sending event &quot;{eventName}&quot; to GA4
+      <Suspense>
+        <Script src="injectGtag.js" />
+        Sending event &quot;{eventName}&quot; to GA4
+      </Suspense>
     </div>
   );
 }
