@@ -24,6 +24,10 @@ export default function SendEventPage({
 
   return (
     <div>
+      <Script
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${gtagID}`}
+      />
       <Script src="injectGtag.js" />
       Sending event &quot;{eventName}&quot; to GA4
     </div>
