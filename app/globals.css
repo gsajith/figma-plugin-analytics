@@ -1,0 +1,13 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: sans-serif;
+  color: #333;
+}
+
+span {
+  font-weight: bold;
+  color: orange;
+}
