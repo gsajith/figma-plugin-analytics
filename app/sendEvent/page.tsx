@@ -1,6 +1,6 @@
 "use client";
 import Script from "next/script";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../globals.css";
 import Link from "next/link";
 
@@ -11,6 +11,7 @@ export default function SendEventPage({
 }) {
   const eventName = searchParams["eventName"];
   const gtagID = searchParams["gtagID"];
+  const [location, setLocation] = useState("");
 
   useEffect(() => {
     if (typeof window !== "undefined" && gtagID) {
@@ -23,6 +24,12 @@ export default function SendEventPage({
       localStorage.setItem("eventName", eventName);
     }
   }, [eventName]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setLocation(window.location.href);
+    }
+  }, []);
 
   useEffect(() => {
     if (!eventName || !gtagID) {
@@ -44,7 +51,7 @@ export default function SendEventPage({
           Sending event <span>{eventName}</span> to GA4 ID <span>{gtagID}</span>
           .<br />
           <br />
-          Source URL is <span>{window.location.href}</span>
+          Source URL is <span>{location}</span>
         </>
       ) : (
         <>
